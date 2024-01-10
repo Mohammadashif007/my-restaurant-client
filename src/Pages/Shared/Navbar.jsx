@@ -7,25 +7,15 @@ const Navbar = () => {
                 <Link to='/'>Home</Link>
             </li>
             <li>
-                <details>
-                    <summary>Shop</summary>
-                    <ul className="p-2">
-                        <li>
-                            <a>Food</a>
-                        </li>
-                        <li>
-                            <a>Category</a>
-                        </li>
-                    </ul>
-                </details>
+                <Link to='/menu'>Menu</Link>
             </li>
             <li>
-                <a>Item 3</a>
+                <Link to='/order/salad'>Order</Link>
             </li>
         </>
     );
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar max-w-screen-xl mx-auto fixed z-10 bg-opacity-30 text-white bg-slate-700">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div
