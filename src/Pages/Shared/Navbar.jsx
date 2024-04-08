@@ -1,17 +1,43 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContextProvider";
+// import auth from "../../firebase/firebase.config";
+
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+  
+
+
+    const handleLogOut = () => {
+        logOut();
+    };
+
     const navLink = (
         <>
             <li>
-                <Link to='/'>Home</Link>
+                <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to='/menu'>Menu</Link>
+                <Link to="/menu">Menu</Link>
             </li>
             <li>
-                <Link to='/order/salad'>Order</Link>
+                <Link to="/order/salad">Order</Link>
             </li>
+            {user ? (
+                <>
+                <li>
+                    {user.email}
+                </li>
+                <li>
+                    <Link onClick={handleLogOut}>LogOut</Link>
+                </li>
+                </>
+            ) : (
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+            )}
         </>
     );
     return (
@@ -42,15 +68,13 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
-                       {navLink}
+                        {navLink}
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {navLink}
-                </ul>
+                <ul className="menu menu-horizontal px-1">{navLink}</ul>
             </div>
             <div className="navbar-end">
                 <a className="btn">Button</a>
